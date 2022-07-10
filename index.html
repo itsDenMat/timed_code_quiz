@@ -14,21 +14,22 @@
 </head>
 
 <body>
+    <!-- Title and Navigation -->
     <header>
         <h1> Javascript Coding Quiz</h1>
             <ul>
                 <li id="rule-navpage">Rules</li>
                 <li id="score-navpage">High Scores</li>
             </ul>
-
     </header>
 
     <main>
-        
+        <!-- Timer box placed on top of question box -->
         <div id="timer">
             <time>Time Left: <span id="time-left"></span> </time>
         </div>
 
+        <!-- Initial prompt with Start button -->
         <div class="main-section" id="test-container">
             <div>
                 <h2>Coding Quiz Challenge</h2>
@@ -37,23 +38,25 @@
             </div>
         </div>
 
+        <!-- Hidden question container -->
         <div hidden id="question_box" class="box">
-            
+            <!-- Question -->
             <h2 id="question-title"></h2>
-
+            <!-- Selections -->
             <div id="question-options">
                 <button id="option1" class="button option-button"></button>
                 <button id="option2" class="button option-button"></button>
                 <button id="option3" class="button option-button"></button>
                 <button id="option4" class="button option-button"></button>
             </div>
-
+            <!-- Indicates if answer selected is correct or wrong -->
             <div id="result-answer">
                 <hr>
                 <p id="result-text"></p>
             </div>
         </div>
 
+        <!-- Hidden player initial and score submission -->
         <div hidden id="score-box" class="box">
             <p>Your final score is <span id="score"></span></p>
             <form class="inline-form" id="submit-form">
@@ -63,6 +66,7 @@
             </form>
         </div>
 
+        <!-- Hidden high score display box -->
         <div hidden id="score-box" class="box">
             <h2>HIGH SCORES</h2>
             <ol id="hight-score">
