@@ -14,27 +14,42 @@
 </head>
 
 <body>
-
     <header>
         <h1> Javascript Coding Quiz</h1>
             <ul>
-                <li id="rule_page">Rules</li>
-                <li id="score_page">High Scores</li>
+                <li id="rule-page">Rules</li>
+                <li id="score-page">High Scores</li>
             </ul>
 
     </header>
 
     <main>
-    
         <div id="timer">
-            <time>Time Left: <span id="timeLeft"></span> </time>
+            <time>Time Left: <span id="time-left"></span> </time>
         </div>
 
-        <div class="mainSection" id="testContainer">
+        <div class="main-section" id="test-container">
             <div>
                 <h2>Coding Quiz Challenge</h2>
                 <p>Let's see your knowledge on JavaScript fundamentals. This test is not official, it's just a good way to refresh your knowledge with basic JavaScript</p>
                 <button type="button" id="start-quiz-btn">Start Quiz</button> 
+            </div>
+        </div>
+
+        <div hidden id="question_box" class="box">
+            
+            <h2 id="question-title"></h2>
+
+            <div id="question-options">
+                <button id="option1" class="button option-button"></button>
+                <button id="option2" class="button option-button"></button>
+                <button id="option3" class="button option-button"></button>
+                <button id="option4" class="button option-button"></button>
+            </div>
+
+            <div id="result-answer">
+                <hr>
+                <p id="result-text"></p>
             </div>
         </div>
 
