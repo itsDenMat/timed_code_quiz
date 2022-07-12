@@ -1,299 +1,289 @@
-// Set of questions, selections, and the correcct answer
-const question = [
-    {
-        question: "In what HTML element do we put the Javascript?",
-        choices: ["a. <javascript>", "b. <script>", "c. <link>", "d. <a href>"],
-        answer: "b. <script>",
-    },
-    {
-        question: "Commonly used data types DO NOT include:",
-        choices: ["a. boolean", "b. function", "c. object", "d. alerts"],
-        answer: "d. alerts",
-    },
-    {
-        question: "What is a method used to add a new element at the end of an array?",
-        choices: ["a. push()", "b. pop()", "c. unshift()", "d. addEnd()"],
-        answer: "a. push()",
-    },
-    {
-        question: "A very useful tool used for development and debugging an application is:",
-        choices: ["a. terminal", "b. CSS", "c. console.log", "d. antivirus"],
-        answer: "c. console.log",
-    },
-    {
-        question: "What is considered a comment in Javascript?",
-        choices: ["a. *This is a comment*", "b. //This is a comment", "c. <!--This is a comment-->", "d. <//This is a comment//>"],
-        answer: "b. //This is a comment",
-    },
-    {
-        question: "What is a Javascript method that coverts an array to a string of array values?",
-        choices: ["a. stringify()", "b. connect()", "c. getElementByID()", "d. toString()"],
-        answer: "d. toString()",
-    },
-    {
-        question: "A data type that only take the values of true or false is called?",
-        choices: ["a. object", "b. selection", "c. boolean", "d. method"],
-        answer: "c. boolean",
-    },
-    {
-        question: "What do you call a special variable that can hold more than one value?",
-        choices: ["a. array", "b. const", "c. espeialVar", "d. if statements"],
-        answer: "a. array"
-    },
-    {
-        question: "What operator do you use to see if two variables are equal in value and type?",
-        choices: ["a. =", "b. equals", "c. ===", "d. =="],
-        answer: "c. ===",
-    },
-    {
-        question: "Who invented JavaScript?",
-        choices: ["a. Bill Gates", "b. Anthony Javascript", "c. Brendan Eich", "d. Douglas Newton"],
-        answer: "c. Breandan Eich",
-    },
+// Questions, choices, and correct answers
+const questions = [
+  {
+      question: "Inside which HTML element do we put the JavaScript?",
+      choices: ["a. <javascript>", "b. <script>", "c. <link>", "d. <a href>"],
+      answer: "b. <script>"
+  },
+  {
+      question: "Commonly used data types DO NOT include:",
+      choices: ["a. boolean", "b. function", "c. object", "d. alerts"],
+      answer: "d. alerts"
+  },
+  {
+      question: "What is a method to add a new element at the end of an array?",
+      choices: ["a. push()", "b. pop()", "c. unshift()", "d. addEnd()"],
+      answer: "a. push()"
+  },
+  {
+      question: "A very useful tool used for development and debugging an application is called:",
+      choices: ["a. terminal", "b. CSS", "c. console.log", "d. JavaScript"],
+      answer: "c. console.log"
+  },
+  {
+      question: "What is considered a comment in JavaScript",
+      choices: ["a. *This is a comment*", "b. //This is a comment", "c. <--!This is a comment-->", "d. <//This is a comment//>"],
+      answer: "b. //This is a comment"
+  },
+  {
+      question: "What is a JavaScript method that converts an array to a string of array values?",
+      choices: ["a. stringify()", "b. connect()", "c. getElementByID()", "d. toString()"],
+      answer: "d. toString()"
+  },
+  {
+      question: "A data type that only take the values of true or fales is called?",
+      choices: ["a. object", "b. selection", "c. boolean", "d. method"],
+      answer: "c. boolean"
+  },
+  {
+      question: "What do you call a special variable that can hold more than one value?",
+      choices: ["a. array", "b. if statements", "c. especialVar", "d. while loop"],
+      answer: "a. array"
+  },
+  {
+      question: "What operator do you use to see if two variables are equal in value and type?",
+      choices: ["a. =", "b. equals", "c. ===", "d. =="],
+      answer: "c. ==="
+  },
+  {
+      question: "Who invented JavaScript",
+      choices: ["a. Bill Gates", "b. Anthony Javascript", "c. Brendan Eich", "d. Doughlas Newton"],
+      answer: "c. Brendan Eich"
+  },
 ];
 
+// Timer Variables
+var timer = document.getElementById("timer");
+var timeLeft = document.getElementById("timeLeft");
+var timesUp = document.getElementById("timesUp");
+var timeReady = document.getElementById("time-placeholder")
 
-//select each card div by id and assign to variables
-const startBox = document.querySelector("#start-container");
-const questionBox = document.querySelector("#question-box");
-const scorebox = document.querySelector("#score-box");
-const leaderboardBox = document.querySelector("#high-score-box");
+// Start Button Variables
+var startBox  = document.getElementById("start");
+var startBtn = document.getElementById("start-quiz-button");
 
-//hide all cards
-function hideCards() {
-  startBox.setAttribute("hidden", true);
-  questionBox.setAttribute("hidden", true);
-  scorebox.setAttribute("hidden", true);
-  leaderboardBox.setAttribute("hidden", true);
+// Question Box and Selections Variable
+var questionBox = document.getElementById("questionDiv");
+var questionTitle = document.getElementById("questionTitle");
+var choiceA = document.getElementById("btn0");
+var choiceB = document.getElementById("btn1");
+var choiceC = document.getElementById("btn2");
+var choiceD = document.getElementById("btn3");
+var choiceResult = document.getElementById("answerCheck");
+
+// Final Score and Initial Variable
+var summaryBox = document.getElementById("summary");
+var initialBtn = document.getElementById("submitInitialBtn");
+var initialText = document.getElementById("initialInput");
+
+// High Score Variable
+var highScoreBox = document.getElementById("highScoreSection");
+var finalScore = document.getElementById("finalScore");
+
+var backBtn = document.getElementById("goBackBtn");
+var clearBtn = document.getElementById("clearHighScoreBtn"); 
+var viewScore = document.getElementById("viewHighScore");
+var highScores = document.getElementById("listOfHighScores");
+
+// Other variables needed
+var correctAns = 0;
+var questionNum = 0;
+var scoreResult;
+var questionIndex = 0;
+
+// Timer Function
+var totalTime = 101;
+function newQuiz() {
+  questionIndex = 0;
+  totalTime = 100;
+  timeLeft.textContent = totalTime;
+  initialText.textContent = "";
+
+  // What displays when start button is clicked
+  startBox.style.display = "none";
+  questionBox.style.display = "block";
+  timer.style.display = "block";
+  timesUp.style.display = "none";
+  timeReady.style.display = "none";
+
+  var startTimer = setInterval(function() {
+      totalTime--;
+      timeLeft.textContent = totalTime;
+      if(totalTime <= 0) {
+          clearInterval(startTimer);
+          if (questionIndex < questions.length - 1) {
+              gameOver();
+          }
+      }
+  },1000);
+
+  showQuiz();
+};
+
+// Function for next questions
+function showQuiz() {
+  nextQuestion();
 }
 
-const resultDiv = document.querySelector("#result-answer");
-const resultText = document.querySelector("#result-text");
-
-//hide result div
-function hideResultText() {
-  resultDiv.style.display = "none";
+function nextQuestion() {
+  questionTitle.textContent = questions[questionIndex].question;
+  choiceA.textContent = questions[questionIndex].choices[0];
+  choiceB.textContent = questions[questionIndex].choices[1];
+  choiceC.textContent = questions[questionIndex].choices[2];
+  choiceD.textContent = questions[questionIndex].choices[3];
 }
 
-//these variables are required globally
-var intervalID;
-var time;
-var currentQuestion;
+// Function to notify player if their answer is correct or wrong
+function checkAnswer(answer) {
 
-document.querySelector("#start-quiz-btn").addEventListener("click", startQuiz);
+  var lineBreak = document.getElementById("lineBreak");
+  lineBreak.style.display = "block";
+  choiceResult.style.display = "block";
 
-function startQuiz() {
-  //hide any visible cards, show the question card
-  hideCards();
-  questionCard.removeAttribute("hidden");
-
-  //assign 0 to currentQuestion when start button is clicked, then display the current question on the page
-  currentQuestion = 0;
-  displayQuestion();
-
-  //set total time depending on number of questions
-  time = questions.length * 10;
-
-  //executes function "countdown" every 1000ms to update time and display on page
-  intervalID = setInterval(countdown, 1000);
-
-  //invoke displayTime here to ensure time appears on the page as soon as the start button is clicked, not after 1 second
-  displayTime();
-}
-
-//reduce time by 1 and display new value, if time runs out then end quiz
-function countdown() {
-  time--;
-  displayTime();
-  if (time < 1) {
-    endQuiz();
-  }
-}
-
-//display time on page
-const timeDisplay = document.querySelector("#timer");
-function displayTime() {
-  timeDisplay.textContent = time;
-}
-
-//display the question and answer options for the current question
-function displayQuestion() {
-  let question = questions[currentQuestion];
-  let options = question.options;
-
-  let h2QuestionElement = document.querySelector("#question-title");
-  h2QuestionElement.textContent = question.questionText;
-
-  for (let i = 0; i < options.length; i++) {
-    let option = options[i];
-    let optionButton = document.querySelector("#option" + i);
-    optionButton.textContent = option;
-  }
-}
-
-//behaviour when an answer button is clicked: click event bubbles up to div with id "quiz-options"
-//eventObject.target identifies the specific button element that was clicked on
-document.querySelector("#question-options").addEventListener("click", checkAnswer);
-
-//Compare the text content of the option button with the answer to the current question
-function optionIsCorrect(optionButton) {
-  return optionButton.textContent === questions[currentQuestion].answer;
-}
-
-//if answer is incorrect, penalise time
-function checkAnswer(eventObject) {
-  let optionButton = eventObject.target;
-  resultDiv.style.display = "block";
-  if (optionIsCorrect(optionButton)) {
-    resultText.textContent = "Correct!";
-    setTimeout(hideResultText, 1000);
+  if (questions[questionIndex].answer === questions[questionIndex].choices[answer]) {
+      // Add 1 point to score every correct answer
+      correctAns++;
+      choiceResult.textContent = "Correct!";
   } else {
-    resultText.textContent = "Incorrect!";
-    setTimeout(hideResultText, 1000);
-    if (time >= 10) {
-      time = time - 10;
-      displayTime();
-    } else {
-      //if time is less than 10, display time as 0 and end quiz
-      //time is set to zero in this case to avoid displaying a negative number in cases where a wrong answer is submitted with < 10 seconds left on the timer
-      time = 0;
-      displayTime();
-      endQuiz();
-    }
+      // Deduce 10 seconds from time left on the timer
+      totalTime -= 10;
+      timeLeft.textContent = totalTime;
+      choiceResult.textContent = "Wrong! The correct answer is: " + questions[questionIndex].answer;
   }
 
-  //increment current question by 1
-  currentQuestion++;
-  //if we have not run out of questions then display next question, else end quiz
-  if (currentQuestion < questions.length) {
-    displayQuestion();
+  questionIndex++; 
+  if (questionIndex < questions.length) {
+      nextQuestion();
   } else {
-    endQuiz();
+      gameOver(); //Ends the game when there are 0 questions left
   }
 }
 
-//display scorecard and hide other divs
-const score = document.querySelector("#score");
+function chooseA() { checkAnswer(0); }
 
-//at end of quiz, clear the timer, hide any visible cards and display the scorecard and display the score as the remaining time
-function endQuiz() {
-  clearInterval(intervalID);
-  hideCards();
-  scoreCard.removeAttribute("hidden");
-  score.textContent = time;
+function chooseB() { checkAnswer(1); }
+
+function chooseC() { checkAnswer(2); }
+
+function chooseD() { checkAnswer(3); }
+
+// Function to end the game when all questions are answered or if the time ran out.
+function gameOver() {
+  summaryBox.style.display = "block";
+  questionBox.style.display = "none";
+  startBox.style.display = "none";
+  timer.style.display = "none";
+  timesUp.style.display = "block";
+
+  // Tally of final score
+  finalScore.textContent = correctAns;
 }
 
-const submitButton = document.querySelector("#submit-btn");
-const inputElement = document.querySelector("#initials");
-
-//store user initials and score when submit button is clicked
-submitButton.addEventListener("click", storeScore);
-
-function storeScore(event) {
-  //prevent default behaviour of form submission
+// Prompt to enter initial
+function storeHighScores(event) {
   event.preventDefault();
 
-  //check for input
-  if (!inputElement.value) {
-    alert("Please enter your initials before pressing submit!");
-    return;
+  // Will prompt user to enter initial if left blank
+  if (initialText.value === "") {
+      alert("Please enter your initials!");
+      return;
+  } 
+
+  // Will show High Score Box
+  startBox.style.display = "none";
+  timer.style.display = "none";
+  timesUp.style.display = "none";
+  summaryBox.style.display = "none";
+  highScoreBox.style.display = "block";   
+
+  //Storing initials and scores in local storage
+  var savedHighScores = localStorage.getItem("high scores");
+  var scoresArray;
+
+  if (savedHighScores === null) {
+      scoresArray = [];
+  } else {
+      scoresArray = JSON.parse(savedHighScores)
   }
 
-  //store score and initials in an object
-  let leaderboardItem = {
-    initials: inputElement.value,
-    score: time,
+  var userScore = {
+      initials: initialText.value,
+      score: finalScore.textContent
   };
 
-  updateStoredLeaderboard(leaderboardItem);
+  console.log(userScore);
+  scoresArray.push(userScore);
 
-  //hide the question card, display the leaderboardcard
-  hideCards();
-  leaderboardCard.removeAttribute("hidden");
-
-  renderLeaderboard();
+  // Utilizing JSON to convert array to string for storage
+  var scoresArrayString = JSON.stringify(scoresArray);
+  window.localStorage.setItem("high scores", scoresArrayString);
+  
+  // show current highscores
+  showHighScores();
 }
 
-//updates the leaderboard stored in local storage
-function updateStoredLeaderboard(leaderboardItem) {
-  let leaderboardArray = getLeaderboard();
-  //append new leaderboard item to leaderboard array
-  leaderboardArray.push(leaderboardItem);
-  localStorage.setItem("leaderboardArray", JSON.stringify(leaderboardArray));
-}
+// function to show high scores
+var i = 0;
+function showHighScores() {
 
-//get "leaderboardArray" from local storage (if it exists) and parse it into a javascript object using JSON.parse
-function getLeaderboard() {
-  let storedLeaderboard = localStorage.getItem("leaderboardArray");
-  if (storedLeaderboard !== null) {
-    let leaderboardArray = JSON.parse(storedLeaderboard);
-    return leaderboardArray;
-  } else {
-    leaderboardArray = [];
+  startBox.style.display = "none";
+  timer.style.display = "none";
+  questionBox.style.display = "none";
+  timesUp.style.display = "block";
+  summaryBox.style.display = "none";
+  highScoreBox.style.display = "block";
+
+  var savedHighScores = localStorage.getItem("high scores");
+
+  // check if there is any in local storage
+  if (savedHighScores === null) {
+      return;
   }
-  return leaderboardArray;
-}
+  console.log(savedHighScores);
 
-//display leaderboard on leaderboard card
-function renderLeaderboard() {
-  let sortedLeaderboardArray = sortLeaderboard();
-  const highscoreList = document.querySelector("#highscore-list");
-  highscoreList.innerHTML = "";
-  for (let i = 0; i < sortedLeaderboardArray.length; i++) {
-    let leaderboardEntry = sortedLeaderboardArray[i];
-    let newListItem = document.createElement("li");
-    newListItem.textContent =
-      leaderboardEntry.initials + " - " + leaderboardEntry.score;
-    highscoreList.append(newListItem);
+  var storedHighScores = JSON.parse(savedHighScores);
+
+  for (; i < storedHighScores.length; i++) {
+      var eachNewHighScore = document.createElement("p");
+      eachNewHighScore.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score;
+      highScores.appendChild(eachNewHighScore);
   }
 }
 
-//sort leaderboard array from highest to lowest
-function sortLeaderboard() {
-  let leaderboardArray = getLeaderboard();
-  if (!leaderboardArray) {
-    return;
-  }
 
-  leaderboardArray.sort(function (a, b) {
-    return b.score - a.score;
-  });
-  return leaderboardArray;
-}
+// **Event Listeners**
+// Start Button
+startBtn.addEventListener("click", newQuiz);
 
-const clearButton = document.querySelector("#clear-button");
-clearButton.addEventListener("click", clearHighscores);
+// Choices of Answers Buttons
+choiceA.addEventListener("click", chooseA);
+choiceB.addEventListener("click", chooseB);
+choiceC.addEventListener("click", chooseC);
+choiceD.addEventListener("click", chooseD);
 
-//clear local storage and display empty leaderboard
-function clearHighscores() {
-  localStorage.clear();
-  renderLeaderboard();
-}
+// Initial Submit Button
+initialBtn.addEventListener("click", function(event){ 
+  storeHighScores(event);
+});
 
-const backButton = document.querySelector("#back-button");
-backButton.addEventListener("click", returnToStart);
+// View High Score Link
+viewScore.addEventListener("click", function(event) { 
+  showHighScores(event);
+});
 
-//Hide leaderboard card show start card
-function returnToStart() {
-  hideCards();
-  startCard.removeAttribute("hidden");
-}
+// Back Button in High Score Box
+backBtn.addEventListener("click", function() {
+  startBox.style.display = "block";
+  highScoreBox.style.display = "none";
+  choiceResult.style.display = "none";
+  timesUp.style.display = "none";
+  timeReady.style.display = "block";
+});
 
-//use link to view highscores from any point on the page
-const leaderboardLink = document.querySelector("#leaderboard-link");
-leaderboardLink.addEventListener("click", showLeaderboard);
+// Clear Button in High Score
+clearBtn.addEventListener("click", function(){
+  window.localStorage.removeItem("high scores");
+  highScores.innerHTML = "High Scores Cleared!";
+  highScores.setAttribute("style", "font-family: 'Archivo', sans-serif; font-style: italic;")
+});
 
-function showLeaderboard() {
-  hideCards();
-  leaderboardCard.removeAttribute("hidden");
-
-  //stop countdown
-  clearInterval(intervalID);
-
-  //assign undefined to time and display that, so that time does not appear on page
-  time = undefined;
-  displayTime();
-
-  //display leaderboard on leaderboard card
-  renderLeaderboard();
-}
