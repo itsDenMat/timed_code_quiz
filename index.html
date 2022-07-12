@@ -4,81 +4,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" text="text/css" href="#">
+    <!-- CSS Link -->
+    <link rel="stylesheet" text="text/css" href="./style.css">
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
 
     <title>Coding Quiz</title>
 </head>
 
 <body>
-    <!-- Title and Navigation -->
-    <header>
-        <h1> Javascript Coding Quiz</h1>
-            <ul>
-                <li id="rule-navpage">Rules</li>
-                <li id="score-navpage">High Scores</li>
-            </ul>
-    </header>
-
-    <main>
-        <!-- Timer box placed on top of question box -->
-        <div id="timer">
-            <time>Time Left: <span id="time-left"></span> </time>
+    <!-- Navbar with Title, High Scores, and Time-->
+    <nav class="navbar">
+        <div class="score-nav">
+            <a href="#" id="viewHighScore">View High Scores</a>
         </div>
-
-        <!-- Initial prompt with Start button -->
-        <div class="main-section" id="test-container">
-            <div>
-                <h2>Coding Quiz Challenge</h2>
-                <p>Let's see your knowledge on JavaScript fundamentals. This test is not official, it's just a good way to refresh your knowledge with basic JavaScript</p>
-                <button type="button" id="start-quiz-btn">Start Quiz</button> 
-            </div>
+        <div class="quiz-title">
+            <h1>JavaScript Fun Quiz</h1>
         </div>
+        <div id="time-placeholder">READY UP</div>
+        <div id="timer" style="display: none;" class="time-nav">
+            <p>Time: <span id="timeLeft">0</span></p>
+        </div>
+        <div id="timesUp" class="time-expired" style="display: none;">Time's Up!</div>
+    </nav>
 
-        <!-- Hidden question container -->
-        <div hidden id="question_box" class="box">
-            <!-- Question -->
-            <h2 id="question-title"></h2>
+    <!-- Introduction Box -->
+    <div id="everything" class="full-page">
+        <div id="start" class="box intro-box">
+            <h2>Coding Quiz Challenge</h2>
+            <p>Let's test your knowledge on JavaScript fundamentals!</p>
+            <p>Try to answer the followding code-related questions within the time limit.</p>
+            <p>Keep in mind that incorrect answers will penalize your time by ten seconds!</p>
+            <!-- Start Button -->
+            <button type="button" id="start-quiz-button" class="btn">Start Quiz</button>
+        </div>
+    </div>
+
+    <!-- Questions and Selections -->
+    <div id="questionDiv" class="box" style="display: none;">
+        <!-- Question Box -->
+        <p id="questionTitle" class="question-title"></p>
             <!-- Selections -->
-            <div id="question-options">
-                <button id="option1" class="button option-button"></button>
-                <button id="option2" class="button option-button"></button>
-                <button id="option3" class="button option-button"></button>
-                <button id="option4" class="button option-button"></button>
+            <div class="selection">
+                <button id="btn0" class="select-btn"></button>
+                <button id="btn1" class="select-btn"></button>
+                <button id="btn2" class="select-btn"></button>
+                <button id="btn3" class="select-btn"></button>
+                <hr id="lineBreak" style="display: none" class="mt-4">
+                <!-- States if your answer is right or wrong -->
+                <p id="answerCheck" style="display: none;"></p>
             </div>
-            <!-- Indicates if answer selected is correct or wrong -->
-            <div id="result-answer">
-                <hr>
-                <p id="result-text"></p>
-            </div>
-        </div>
+    </div>
 
-        <!-- Hidden player initial and score submission -->
-        <div hidden id="score-box" class="box">
-            <p>Your final score is <span id="score"></span></p>
-            <form class="inline-form" id="submit-form">
-                <label for="initials">Enter initials</label>
-                <input type="text" id="initials">
-                <button id="submit-btn" class="btn">Submit</button>
+    <!-- Final Score Box -->
+    <div class="box" id="summary" style="display: none;">
+        <div class="final-score">
+            <h2>Your final score is <span id="finalScore"></span> !</h2>
+            <form>
+                <p>Enter your initials:</p> 
+                <input id="initialInput" type="text">
+                <p><button type="submit" id="submitInitialBtn" class="btn">Submit</button></p>
             </form>
         </div>
+    </div>
 
-        <!-- Hidden high score display box -->
-        <div hidden id="score-box" class="box">
-            <h2>HIGH SCORES</h2>
-            <ol id="hight-score">
-            </ol>
-            <div class="inline-btn">
-                <button id="back-btn" class="btn">Go Back</button>
-                <button id="clear-btn" class="btn">Clear High Scores</button>
+    <!-- High Scores Box -->
+    <div id="highScoreSection" class="box high-score" style="display: none;">
+        <h2>High Scores</h2>                   
+            <div id="listOfHighScores" class="list-of-scores"></div>
+                <p>
+                    <button type="submit" class="btn" id="goBackBtn">Go Back</button>
+                    <button type="submit" class="btn" id="clearHighScoreBtn">Clear High Scores</button>
+                </p>
             </div>
-        </div>
+    </div>
 
-    </main>
-
+    <!-- JavaScript Link -->
+    <script src="./script.js"></script>
 </body>
 
 </html>
