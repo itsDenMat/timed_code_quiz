@@ -189,7 +189,6 @@ function storeHighScores(event) {
       return;
   } 
 
-  // Will show High Score Box
   startBox.style.display = "none";
   timer.style.display = "none";
   timesUp.style.display = "none";
@@ -218,12 +217,11 @@ function storeHighScores(event) {
   var scoresArrayString = JSON.stringify(scoresArray);
   window.localStorage.setItem("high scores", scoresArrayString);
   
-  // show current highscores
   showHighScores();
 }
 
 // function to show high scores
-var i = 0;
+// var i = 0;
 function showHighScores() {
 
   startBox.style.display = "none";
@@ -232,6 +230,7 @@ function showHighScores() {
   timesUp.style.display = "block";
   summaryBox.style.display = "none";
   highScoreBox.style.display = "block";
+  highScores.innerHTML = "";
 
   var savedHighScores = localStorage.getItem("high scores");
 
@@ -243,7 +242,7 @@ function showHighScores() {
 
   var storedHighScores = JSON.parse(savedHighScores);
 
-  for (; i < storedHighScores.length; i++) {
+  for (var i = 0; i < storedHighScores.length; i++) {
       var eachNewHighScore = document.createElement("p");
       eachNewHighScore.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score;
       highScores.appendChild(eachNewHighScore);
@@ -269,6 +268,8 @@ initialBtn.addEventListener("click", function(event){
 // View High Score Link
 viewScore.addEventListener("click", function(event) { 
   showHighScores(event);
+  timesUp.style.display = "none";
+  timeReady.style.display = "block";
 });
 
 // Back Button in High Score Box
@@ -284,6 +285,6 @@ backBtn.addEventListener("click", function() {
 clearBtn.addEventListener("click", function(){
   window.localStorage.removeItem("high scores");
   highScores.innerHTML = "High Scores Cleared!";
-  highScores.setAttribute("style", "font-family: 'Archivo', sans-serif; font-style: italic;")
+  highScores.setAttribute("style", "font-family: 'Montserratt', sans-serif; font-style: italic;")
 });
 
