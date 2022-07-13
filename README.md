@@ -6,7 +6,7 @@ This is an interactive, timed quiz that stores user initials and scores in a loc
 ## Accessing the Application
 To access the application, you can follow the deployment link or download the source files in the GitHub repository linked below.
 
-<p><strong>Deployment Link:</strong> <a href="#">Timed Code Quiz</a></p>
+<p><strong>Deployment Link:</strong> <a href="https://itsdenmat.github.io/timed_code_quiz/">Timed Code Quiz</a></p>
 <p><strong>GitHub:</strong> <a href="https://github.com/itsDenMat/timed_code_quiz">GitHub Timed Code Quiz Repository</a></p>
 
 ## Timed Code Quiz Functionality
